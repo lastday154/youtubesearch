@@ -29,3 +29,25 @@ $(function(){
 		e.preventDefault();
 	});
 });
+
+function search(){
+	// clear results
+	$('#results').html('');
+	$('#buttons').html('');
+
+	q = $('#query').val();
+
+	$.get(
+		"https://www.googleapis.com/youtube/v3/search",
+		{
+			part: 'snippet, id',
+			q: q,
+			type: 'video',
+			key: 'AIzaSyCho-qt9KljKcSiN1YOT2OO03fQcz1o23U'
+		}, function(data) {
+			$.each(data.items, function(i, item){
+				console.log(item);
+			});
+		}
+	);
+}
